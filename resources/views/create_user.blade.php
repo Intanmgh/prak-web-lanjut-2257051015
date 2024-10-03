@@ -90,7 +90,7 @@
 <div>
     
     <!-- Isi Section -->
-    <form action="{{ route('user.store') }}" method="POST">
+    <form action="{{ route('user.store') }}" method="post" enctype="multipart/form-data">
         @csrf
         <label for="nama">Nama:</label>
         <input type="text" id="nama" name="nama"><br>
@@ -103,7 +103,10 @@
             @foreach ($kelas as $kelasItem)
             <option value="{{ $kelasItem->id }}">{{ $kelasItem->nama_kelas }}</option>
             @endforeach
-        </select>
+        </select><br>
+        <label for="foto">foto</label><br>
+        <input type="file" id="foto" name="foto"><br><br>
+        <label for="foto">foto:</label><br>
 
         <button type="submit">Submit</button>
     </form>

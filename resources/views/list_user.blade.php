@@ -73,6 +73,7 @@
             <td>{{ $user->nama }}</td>
             <td>{{ $user->npm }}</td>
             <td>{{ $user->nama_kelas }}</td>
+            <td><a href="show/{{  $user->id }}" class="btn btn-warning mb-3">Detail</a></td>
         </tr>
         @endforeach
     </tbody>
