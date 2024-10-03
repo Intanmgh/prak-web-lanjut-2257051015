@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+@extends('layouts.app')
 
+@section('content')     
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Form User</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    
     <style>
         body {
             font-family: 'Poppins', sans-serif;
@@ -83,33 +86,30 @@
 </head>
 
 <body>
-    <div class="form-container">
-        <img src="https://assets.promediateknologi.id/crop/0x0:0x0/750x500/webp/photo/2023/02/25/artikel-19-2527896376.png" alt="Foto Profil">
-        <h2>Form User</h2>
-        <form action="{{ route('user.store') }}" method="POST">
-            @csrf
-            <label for="nama">Nama:</label>
-            <input type="text" id="nama" name="nama" placeholder="Masukkan Nama">
-            @foreach($errors->get('nama') as $msg)
-            <p class="text-danger">{{ $msg }}</p>
+
+<div>
+    
+    <!-- Isi Section -->
+    <form action="{{ route('user.store') }}" method="POST">
+        @csrf
+        <label for="nama">Nama:</label>
+        <input type="text" id="nama" name="nama"><br>
+
+        <label for="npm">NPM : </label>
+        <input type="text" id="npm" name="npm"><br>
+
+        <label for="kelas">Kelas :</label>
+        <select name="kelas_id" id="kelas_id">
+            @foreach ($kelas as $kelasItem)
+            <option value="{{ $kelasItem->id }}">{{ $kelasItem->nama_kelas }}</option>
             @endforeach
+        </select>
 
-            <label for="npm">NPM:</label>
-            <input type="text" id="npm" name="npm" placeholder="Masukkan NPM">
-            @foreach($errors->get('npm') as $msg)
-            <p class="text-danger">{{ $msg }}</p>
-            @endforeach
+        <button type="submit">Submit</button>
+    </form>
 
-            <label for="kelas_id">Kelas:</label>
-            <select name="kelas_id" id="kelas_id">
-                @foreach ($kelas as $kelasItem)
-                <option value="{{ $kelasItem->id }}">{{ $kelasItem->nama_kelas }}</option>
-                @endforeach
-            </select>
-
-            <input type="submit" value="Submit">
-        </form>
-    </div>
+</div>
+@endsection
 </body>
 
 </html>
