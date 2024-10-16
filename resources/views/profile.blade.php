@@ -13,46 +13,77 @@
             justify-content: center; 
             align-items: center; 
             height: 100vh; 
-            margin: 0; 
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
         }
-        .profile-container {
+        .card {
             background-color: #FEF9D9; /* Background kuning muda untuk kotak profil */
-            padding: 40px; 
+            padding: 40px;
             border-radius: 10px;
-            max-width: 400px; /* Atur lebar maksimal */
+            max-width: 400px;
             width: 100%; 
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
-            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Untuk menempatkan gambar di tengah */
+            color: #333; /* Warna teks lebih gelap agar mudah dibaca */
         }
         .profile-img {
             width: 150px; /* Ukuran gambar */
             height: 150px; /* Ukuran gambar */
             border-radius: 50%; /* Membuat gambar menjadi lingkaran */
             object-fit: cover; /* Gambar tetap proporsional */
-            margin-bottom: 20px; /* Jarak antara gambar dan teks */
+            margin-bottom: 20px; /* Jarak antara gambar dan konten lainnya */
         }
-        .info-box {
-            background-color: #8EACCD; /* Warna biru untuk kotak info */
-            color: white; /* Warna teks putih */
-            border-radius: 50px; /* Membuat sudut menjadi lonjong */
-            padding: 10px 0; /* Jarak vertikal dalam kotak */
-            margin-bottom: 10px; /* Jarak antar kotak */
+        .info-container {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start; /* Menyelaraskan inputan di kiri */
+            width: 100%; /* Memastikan konten info mengambil lebar penuh */
+        }
+        .info {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            background-color: #8EACCD; /* Warna kotak info */
+            color: white;
+            border-radius: 50px;
+            padding: 10px 20px; 
+            margin-bottom: 10px; /* Jarak antar kotak info */
+            width: 100%; /* Membuat info melebar sepenuhnya */
+            font-size: 16px; /* Ukuran font yang lebih mudah dibaca */
+        }
+        .info .label {
+            font-weight: bold; /* Menebalkan label */
+            margin-right: 10px; /* Jarak antara label dan value */
+            width: 70px; /* Lebar tetap untuk label agar rata */
+        }
+        .info .value {
+            text-align: left; /* Menyelaraskan teks di sebelah kiri */
+            flex-grow: 1; /* Membuat nilai mengambil sisa ruang */
         }
     </style>
 </head>
 
 <body>
-    <div class="profile-container">
-        <img class="profile-img" src="https://img.wattpad.com/4c907674db67ecca4a4872c3a1b34189d02be019/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f776174747061642d6d656469612d736572766963652f53746f7279496d6167652f41307458744761675a782d6235413d3d2d32372e313566373433336662316539363430303737363237343032353137392e6a7067" alt="Foto Profil">
-        <div class="info-box">
-            Intan Maghfirah
+
+    <div class="card">
+        <img src="../{{ $user->foto }}" class="profile-img" alt="Foto Profil"> <!-- Menggunakan class "profile-img" untuk membuat foto bulat -->
+        <h1>Profil User</h1>
+
+        <div class="info">
+            <p class="label">Nama :</p>
+            <p class="value">{{$user->nama }}</p> <!-- Proper width for name field -->
         </div>
-        <div class="info-box">
-            B
+        <div class="info">
+            <p class="label">NPM :</p>
+            <p class="value">{{ $user->npm }}</p> <!-- Proper width for NPM -->
         </div>
-        <div class="info-box">
-            2257051015
+        <div class="info">
+            <p class="label">Kelas :</p>
+            <p class="value">{{ $nama_kelas ?? 'Kelas tidak ditemukan' }}</p> <!-- Proper width for class -->
         </div>
     </div>
+
 </body>
 </html>
